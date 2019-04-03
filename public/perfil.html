@@ -1,0 +1,243 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="img/LOGO_NTC.png">
+  <title>NTC PERFIL</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" type="text/css" media="all" href="css/estilos.css" />
+  <link rel="stylesheet" type="text/css" media="all" href="css/perfil.css" />
+  <link rel="stylesheet" type="text/css" media="all" href="css/footer.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  
+
+</head>
+
+<body style="background-color: rgb(00,24,84)"> 
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand"  href="sesioniniciada.html"><img src="img/LOGO_NTC.png"class="logo-dunamis"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
+          <a href="sesioniniciada.html#proyectos"><button type="button" href="#proyectos" class="btn btn-outline-light">Proyectos</button></a>
+          <a href="sesioniniciada.html#mensajes"><button type="button" id="Mensajes" class="btn btn-outline-warning">Mensajes</button></a>
+          <a href="sesioniniciada.html#colecciones">   <button type="button" id="Colecciones" class="btn btn-outline-light">Colecciones</button></a>
+
+          <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Crear
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" id="" href="/proyectonuevo.html">Nuevo Proyecto</a>
+                  <a class="dropdown-item" id="" href="/abrirproyecto.html">Abrir Proyecto</a>
+                  <a class="dropdown-item" id="nuevomensaje" href="/NuevoMensaje.html">Nuevo Mensaje</a>
+              </div>
+          </div>
+
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Usuario
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a href="perfil.html" class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="apoyo/MANUAL-DE-AYUDA.pdf" target="blank">Apoyo</a>
+              <a href="/cerrar-sesion" class="dropdown-item">Cerrar Sesion</a>
+            </div>
+          </div>
+        </div>
+        <div id="fotousuario">
+            </div>
+            <div>
+            <div id="nameusuario" style="color:white">
+            </div>
+            </div>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container well">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Tu Perfil de Usuario</h1>
+      </div>
+    </div>
+    <br /><br />
+  </div>
+
+  <div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div id="foto" class="profile-img">
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <div id="username">
+                    </div>
+                            <h6>
+                                Usuario
+                            </h6>
+                            <p class="proile-rating">PLAN DUNAMIS : <span id="plan"></span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Información</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Información extra</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a href="perfilActualizado.html"><input type="button" class="profile-edit-btn" name="btnAddMore" value="Editar Perfil"/></a>
+                <br> <br>
+                <a href="sesioniniciada.html"><input type="button" class="profile-edit-btn" name="btnAddMore" value="Cancelar"/></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>ENLACE CON REDES SOCIALES</p>
+                   <div id="urlfacebook"></div>
+                   <div id="urltwitter"></div>
+                   <div id="urllinkedin"></div>
+                   <div id="urlgithub"></div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                </div>
+                                <div class="row">
+                                    <div id="nombre"class="col-md-6">
+                                        <label>Nombre</label>
+                                    </div>
+                                    <div id="nombrecompleto"class="col-md-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email (correo electronico)</label>
+                                    </div>
+                                    <div id="email"class="col-md-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Teléfono</label>
+                                    </div>
+                                    <div id="telefono"class="col-md-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>País</label>
+                                    </div>
+                                    <div id="pais"class="col-md-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Sexo</label>
+                                    </div>
+                                    <div id="sexo"class="col-md-6">
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Fecha de Nacimiento</label>
+                                    </div>
+                                    <div id="fechanacimiento"class="col-md-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Dirección</label>
+                                    </div>
+                                    <div id="direccion"class="col-md-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Descripción</label>
+                                    </div>
+                                    <div id="biografia"class="col-md-6">
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>
+
+
+
+
+
+
+<div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-columna">
+                    <h3>Notas Tareas Clases</h3>
+                    <img src="img/LOGO_NTC.png" class="logo-dunamisfooter">
+                </div>
+                <div class="footer-columna">
+                    <h3>Dirección</h3>
+                    <span class="fa fa-map-marker">
+                        <p>Tegucigalpa Honduras</p>
+                    </span>
+                    <span class="fa fa-phone">
+                        <p>(+504 9906-2425)</p>
+                    </span>
+                    <span class="fa fa-envelope">
+                        <p>misaelchacon17@yahoo.es</p>
+                    </span>
+                </div>
+                <div class="footer-columna">
+                    <h3>Sobre Nosotros</h3>
+                    <p>Somos una empresa para desarrolladores totalmente diferente, facil de usar y de rapido
+                        acceso</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy-redes">
+            <div class="main-copy-redes">
+                <div class="footer-copy">
+                    <p class="footer-text">
+                        Copyright &copy;<script>
+                            document.write(new Date().getFullYear());
+                        </script> Todos los derechos reservados | NTC</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/controlPerfil.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>>

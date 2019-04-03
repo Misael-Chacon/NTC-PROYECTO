@@ -1,0 +1,46 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.container-fluido{
+    width: 600px;
+    height: 450px;
+    text-align:center;
+    padding: 3rem, 3rem, 3rem, 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:120px;
+    background: rgb(196, 220, 238);
+    box-align: center;
+    color: rgb(36, 12, 12);
+    border-radius: 4px;
+}
+.loginredes{
+    width: 266px;
+    height: 170px;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:70px;
+    box-align: center;
+    border-radius: 4px;
+    padding: 5px,5px,5px,5px;
+}
+#botontwitter{
+    width: 100%;
+    margin-bottom: 5px;
+   }
+#botongithub{
+    width: 100%;
+    margin-top:5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+   }
+#botonfacebook{
+    width: 100%;
+    margin-top:5px;
+    margin-left: auto;
+    margin-right: auto;
+   }

@@ -1,0 +1,237 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/LOGO_NTC.png">
+    <title>NTC PERFIL</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" media="all" href="css/estilos.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/perfil.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+
+</head>
+
+<body  style="background-color: rgb(00,24,84)">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="sesioniniciada.html"><img src="img/LOGO_NTC.png"class="logo-dunamis"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault"  style="background-color: rgb(00,24,84)">
+            <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
+                    <a href="sesioniniciada.html#proyectos"><button type="button" href="#proyectos" class="btn btn-outline-light">Proyectos</button></a>
+                    <a href="sesioniniciada.html#mensajes"><button type="button" id="Mensajes" class="btn btn-outline-warning">Mensajes</button></a>
+                    <a href="sesioniniciada.html#colecciones">   <button type="button" id="Colecciones" class="btn btn-outline-light">Colecciones</button></a>
+          
+                    <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Crear
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" id="" href="/proyectonuevo.html">Nuevo Proyecto</a>
+                                <a class="dropdown-item" id="" href="/abrirproyecto.html">Abrir Proyecto</a>
+                                <a class="dropdown-item" id="nuevomensaje" href="/NuevoMensaje.html">Nuevo Mensaje</a>
+                            </div>
+                        </div>
+
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Usuario
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a href="perfil.html" class="dropdown-item" href="#">Perfil</a>
+                            <a class="dropdown-item" href="apoyo/MANUAL-DE-AYUDA.pdf" target="blank">Apoyo</a>
+                            <a href="/cerrar-sesion" class="dropdown-item">Cerrar Sesion</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="fotousuario">
+                </div>
+                <div>
+                    <div id="nameusuario" style="color:white">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container well">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Tu Perfil de Usuario</h1>
+            </div>
+        </div>
+        <br /><br />
+    </div>
+
+    <div class="container emp-profile">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="col-md-12" style="border-width:1px 1px 1px 1px; border-style: solid; border-color: lightgrey;">
+                    <h3 style="text-align: center">Editar mi Perfil<p><small>Añade información personal para compartir
+                                tu perfil</small></p>
+                    </h3>
+                </div>
+                <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
+                <form name="modifyProfile" id="profileForm" novalidate>
+                    <!-- Inicio del div central parte de formulario información básica -->
+                    <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
+                        <div class="col-md-12 col-md-offset-2">
+
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <br>
+                                    <label>Introduzca su numero telefónico</label>
+                                    <span id="alertName" data-toggle="popover" data-trigger="hover" data-placement="right"
+                                        title="" data-content="">
+                                        <input type="text" class="form-control" id="txtelefono" placeholder="Introduzca su teléfono"
+                                            required data-validation-required-message="Por favor introduzca su Teléfono.">
+                                    </span>
+                                    <br>
+                                    <label>Seleccione la fecha de su nacimiento:</label>
+                                    <span id="alertSurname" data-toggle="popover" data-trigger="hover" data-placement="right"
+                                        title="" data-content="">
+                                        <input type="date" class="form-control" id="txtfecha" placeholder="Fecha de Nacimiento"
+                                            required data-validation-required-message="Por favor seleccione su fecha de nacimiento.">
+                                    </span>
+
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Escriba la direccion donde vive:</label>
+                                    <span id="alertBiography" data-toggle="popover" data-trigger="hover" data-placement="auto"
+                                        title="" data-content="">
+                                        <textarea rows="3" cols="30" class="form-control" id="txtdireccion" required
+                                            maxlength="999" style="resize:none" data-validation-required-message="Por favor introduzca la direccion donde vive."></textarea>
+                                    </span>
+
+                                    <label>Describa su biografia:</label>
+                                    <span id="alertBiography" data-toggle="popover" data-trigger="hover" data-placement="auto"
+                                        title="" data-content="">
+                                        <textarea rows="6" cols="30" class="form-control" id="txtBiography" required
+                                            maxlength="999" style="resize:none" data-validation-required-message="Por favor introduzca su biografía deseada."></textarea>
+                                    </span>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin del div central parte de formulario información básica -->
+                </form>
+                <!-- Fin del form -->
+            </div>
+            <!-- Parte central - enlaces -->
+            <div class="col-md-6" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
+                    <!-- Parte de redes sociales en el alta de perfil -->
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <br>
+                            <label>Enlaces:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">https://www.github.com </span>
+                                <input type="text" class="form-control" id="txtPlus" placeholder="Introduzca su usuario de Git Hub">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon">http://www.twitter.com </span>
+                                <input type="text" class="form-control" id="txtTwitter" placeholder="Introduzca su usuario de Twitter">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon">https://www.facebook.com </span>
+                                <input type="text" class="form-control" id="txtFacebook" placeholder="Introduzca su usuario de Facebook">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon">https://www.linkedin.com </span>
+                                <input type="text" class="form-control" id="txtLinkedin" placeholder="Introduzca su usuario de Linkedin">
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin Parte de redes sociales en el alta de perfil -->
+                <!-- Botones formulario -->
+                <div class="col-md-12 container allFormButtons">
+                    <div class="row">
+                        <br>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <a href="perfil.html"><button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button></a>
+                                <button type="button" id="btnupdate" class="btn btn-primary">Actualizar</button>
+                            </div>
+                        </div>
+                        &nbsp;
+                    </div>
+                </div>
+                <!-- Fin botones formulario -->
+            </div>
+            <!-- Fin Parte central - enlaces -->
+        </div>
+    </div>
+
+    <div>
+            <footer  style="background-color: rgb(00,24,84)">
+                <div class="footer-container">
+                    <div class="footer-main">
+                        <div class="footer-columna">
+                            <h3>Notas Tareas Clases</h3>
+                            <img src="img/LOGO_NTC.png" class="logo-dunamisfooter">
+                        </div>
+                        <div class="footer-columna">
+                            <h3>Dirección</h3>
+                            <span class="fa fa-map-marker">
+                                <p>Tegucigalpa Honduras</p>
+                            </span>
+                            <span class="fa fa-phone">
+                                <p>(+504 9906-2425)</p>
+                            </span>
+                            <span class="fa fa-envelope">
+                                <p>misaelchacon17@yahoo.es</p>
+                            </span>
+                        </div>
+                        <div class="footer-columna">
+                            <h3>Sobre Nosotros</h3>
+                            <p>Somos una empresa para desarrolladores totalmente diferente, facil de usar y de rapido
+                                acceso</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copy-redes">
+                    <div class="main-copy-redes">
+                        <div class="footer-copy">
+                            <p class="footer-text">
+                                Copyright &copy;<script>
+                                    document.write(new Date().getFullYear());
+                                </script> Todos los derechos reservados | Dunamis Digitales</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    
+
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/controlPerfil.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+</body>
+
+</html>>

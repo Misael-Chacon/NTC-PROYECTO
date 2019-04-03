@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/LOGO_NTC.png">
+    <title>Dunamis Registro</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" media="all" href="css/estilos.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/registro.css">
+</head>
+
+<body style="background-color: rgb(00,24,84)">
+    <div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="sesioniniciada.html"><img src="img/LOGO_NTC.png" class="logo-dunamis"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
+                    <a href="sesioniniciada.html#proyectos"><button type="button" href="#proyectos" class="btn btn-outline-light">Proyectos</button></a>
+                    <a href="sesioniniciada.html#mensajes"><button type="button" id="Mensajes" class="btn btn-outline-warning">Mensajes</button></a>
+                    <a href="sesioniniciada.html#colecciones"> <button type="button" id="Colecciones" class="btn btn-outline-light">Colecciones</button></a>
+
+
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="sesioniniciada.html" class="dropdown-item"><button type="button" class="btn btn-danger">Cerrar</button></a>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Usuario
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a href="perfil.html" class="dropdown-item">Perfil</a>
+                                <a class="dropdown-item" href="#">Apoyo</a>
+                                <a class="dropdown-item" href="#">Ajustes</a>
+                                <a href="/cerrar-sesion" class="dropdown-item">Cerrar Sesion</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fotousuario">
+                    </div>
+                    <div>
+                        <div id="nameusuario" style="color:white">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <br>
+
+
+    <div class="container col-md-4 order-md-2 text-center" style="background-color: rgb(00,24,84); margin-top: auto">
+        <div class="py-5 ">
+            <br>
+            <h2 style="text-align: center; color:yellow ">Limite Excedido<br><small>Si quieres seguir creando mas
+                    Proyectos adquiere un Plan NTC.</small></h2>
+        </div>
+        <div >
+            <img src="img/LOGO_NTC.png" class="avisologo-dunamis">
+        </div>
+        <div class="col-md-12 order-md-1 text-center">
+            <form>
+                <hr class="mb-3">
+                <a href="sesioniniciada.html"><button class="btn btn-warning btn-lg" type="button">REGRESAR</button></a>
+                <a href="planes.html"><button class="btn btn-warning btn-lg" type="button">IR A PLANES</button></a>
+                <br>
+            </form>
+            <br>
+            <h5 style="text-align: center; color:yellow ">NTC ES PODER</h5>
+            <br>
+        </div>
+    </div>
+    <br>
+
+
+    <footer class="footer-area" id="footerSection">
+        <div class="col-lg-12 col-md-12 col-sm-12 social-widget ">
+            <div class="single-footer-widget footer-redes siguenos">
+                <h4 style="color: yellow;">Siguenos</h4>
+                <div id="redsocial">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i><img src="img/Facebook.png"
+                            alt="Facebook" class="Facebook"></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa fa-twitter"></i><img src="img/Twitter.png"
+                            alt="Facebook" class="twitter"></a>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-6 col-sm-6">
+            <div id="copyrith" class="single-footer-widget"></div>
+            <p id="copyrith" class="footer-text" style="color:yellow;" style="text-align:center">
+                Copyright &copy;<script>
+                    document.write(new Date().getFullYear());
+                </script>Todos los derechos reservados | NTC</a>
+            </p>
+        </div>
+        <br>
+        <br>
+        </div>
+    </footer>
+
+    <!-- New Message Sidebar End 
+-->
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/controlador.js"></script>
+    <script src="js/controlproyectos.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="shortcut icon" href="img/LOGO_NTC.png">
+      <title>NTC LOGIN</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" type="text/css" media="all" href="css/estilos.css" />
+      <link rel="stylesheet" type="text/css" media="all" href="css/footer.css" />
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/registro.css">
+      <link rel="stylesheet" type="text/css" media="all" href="css/login.css" />
+</head>
+
+<body style=" background-color:rgb(00,24,84)">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="index.html"><img src="img/LOGO_NTC.png" class="logo-dunamis"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                  aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                  <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
+                        <a href="registrogratis.html" class="btn btn-warning my-2 my-sm-0" type="submit">Registrarse</a>
+                  </form>
+            </div>
+      </nav>
+
+      <div class="container-fluido" class=".d-none .d-sm-block" style=" background-color:rgb(00,24,84)">
+            <div class="row">
+                  <div class="registro" class=".d-none .d-sm-block" class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-3">
+                        <h2 style="color: yellow;">INICIAR SESION</h2>
+                        <form class="formulario">
+                              <h6 style="color: yellow;">Escribe tu correo electrónico:</h6>
+                              <input class="form-control" type="email" id="correo"
+                                    placeholder="Direccion de Correo Electronico">
+                              <br />
+                              <h6 style="color: yellow;"> Contraseña: </h6>
+                              <input class="form-control" type="password" id="contrasena"
+                                    placeholder="Contraseña minimo 8 caracteres">
+                              <br />
+                              <button class="btn btn-primary btn-block" type="button" id="btn-login">Iniciar
+                                    Sesión</button>
+                              <br>
+                        </form>
+                  </div>
+                  <div class="loginredes" class=".d-none .d-sm-block" class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-3">
+                        <button id="botontwitter" type="button" class="btn btn-info">Iniciar sesion con Twitter
+                        </button>
+                        <button id="botongithub" type="button" class="btn btn-secondary">Iniciar sesion con Git Hub
+                        </button>
+                        <button id="botonfacebook" type="button" class="btn btn-primary">Iniciar sesión con
+                              Facebook</button>
+                  </div>
+            </div>
+      </div>
+      <br>
+
+
+      <footer class="footer-area" id="footerSection">
+            <div class="col-lg-12 col-md-12 col-sm-12 social-widget ">
+                  <div class="single-footer-widget footer-redes siguenos">
+                        <h4 style="color: yellow;">Siguenos</h4>
+                        <div id="redsocial">
+                              <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i><img
+                                          src="img/Facebook.png" alt="Facebook" class="Facebook"></a>
+                              <a href="https://www.twitter.com" target="_blank"><i class="fa fa-twitter"></i><img
+                                          src="img/Twitter.png" alt="Facebook" class="twitter"></a>
+                        </div>
+                        <br>
+                        <br>
+                  </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div id="copyrith" class="single-footer-widget"></div>
+                  <p id="copyrith" class="footer-text" style="color:yellow;" style="text-align:center">
+                        Copyright &copy;<script>
+                              document.write(new Date().getFullYear());
+                        </script>Todos los derechos reservados | NTC</a>
+                  </p>
+            </div>
+            <br>
+            <br>
+            </div>
+      </footer>
+
+      <script src="js/jquery.min.js"></script>
+      <script src="js/logincontrolador.js"></script>
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

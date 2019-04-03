@@ -1,0 +1,12 @@
+.container {
+    max-width: 960px;
+    margin-top: 20px;
+}
+  
+  .lh-condensed { line-height: 1.25; }
+
+#botonirplanes{
+border-radius: 5px;
+margin-right: 8px;
+}
+  

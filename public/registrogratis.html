@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="shortcut icon" href="img/LOGO_NTC.png">
+      <title>NTC Registro</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" type="text/css" media="all" href="css/estilos.css" />
+      <link rel="stylesheet" type="text/css" media="all" href="css/footer.css" />
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/registro.css">
+</head>
+
+<body style="background-color: rgb(00,24,84)">
+      <div>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+                  <a class="navbar-brand" href="index.html"><img src="img/LOGO_NTC.png" class="logo-dunamis"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                        <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
+                                    <a href="index.html#opinion"><button type="button" id="Mensajes" class="btn btn-outline-warning">Opiniones</button></a>
+                                    <a href="index.html#contact"> <button type="button" id="Colecciones" class="btn btn-outline-light">Contactanos</button></a>
+                    
+                              <a href="login.html" class="btn btn-primary my-2 my-sm-0" type="submit">Iniciar Sesion</a>
+                        </form>
+                  </div>
+            </nav>
+      </div>
+      <br>
+
+
+      <div class="container col-md-6 order-md-1" style="background-color: rgb(00,24,84)">
+            <div class="py-5 text-center">
+                  <br>
+                  <h2 style="text-align: center; color: yellow">BIENVENIDO A NTC <br><small>Registro Gratis</small></h2>
+            </div>
+            <div class="row">
+                  <div class="col-md-6 order-md-1">
+                        <h2 style="text-align: center; color: yellow">Registro de usuarios</h2>
+                        <form action="/guardarregistro" method="GET" class="needs-validation" novalidate>
+                              <div class="mb-3">
+                                    <label for="nombrecompleto">Nombre Completo</label>
+                                    <input type="text" class="form-control" name="nombrecompleto" placeholder="Ejem. Juan Orlando Hernandez"
+                                          required>
+                                    <div class="invalid-feedback">
+                                          Se requiere que escriba su nombre completo
+                                    </div>
+                              </div>
+                              <div class="mb-3">
+                                    <label for="nombreusuario">Elige un nombre de usuario para NTC:</label>
+                                    <input class="form-control" type="text" name="nombreusuario" placeholder="Ejem. JuanFogon"
+                                          required>
+                                    <div class="invalid-feedback">
+                                          Nombre de usuario requerido
+                                    </div>
+                              </div>
+                              <div class="mb-3">
+                                    <label for="correo">Correo Electronico:</label>
+                                    <input class="form-control" type="email" name="correo" name="" placeholder="Ejem. juanhernandez@gmail.com"
+                                          required>
+                                    <div class="invalid-feedback">
+                                          correo electronico requerido
+                                    </div>
+                              </div>
+                              <div class="mb-3">
+                                    <label for="password">Escribe una contraseña:</label>
+                                    <input class="form-control" type="password" name="password" placeholder="minimo 8 caracteres"
+                                          required>
+                                    <div class="invalid-feedback">
+                                          Contraseña requerida
+                                    </div>
+                              </div>
+                              <div class="mb-3">
+                                    <label for="genero">Sexo:</label>
+                                    <h6><label>Femenino<input type="radio" name="genero" value="Femenino"></label>
+                                        <label>Masculino<input type="radio" name="genero"value="Masculino"></label><br></h6>
+                              </div>
+                              <div class="mb-3">
+                                    <label for="pais">Seleccione su nacionalidad o Pais:</label>
+                                    <select id="pais" name ="pais" class="form-control">
+                                          <option value="0" placeholder="Seleccione un pais"></option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                          Seleccione su pais de origen
+                                    </div>
+                              </div>
+                              <div class="mb-3">
+                                          <label for="universidad">Seleccione su Universidad de Estudio:</label>
+                                          <select id="universidad" name ="universidad" class="form-control">
+                                                <option value="0" placeholder="Seleccione una Universidad"></option>
+                                          </select>
+                                          <div class="invalid-feedback">
+                                                Seleccione su Universidad de Estudio
+                                          </div>
+                              </div>
+
+                              <hr class="mb-3">
+                              <button class="btn btn-warning btn-lg btn-block" type="submit">Registrarse</button>
+                              <br>
+                                          <h6 style="color: yellow;">Al registrarse usted acepta los terminos de servicio, el codigo de
+                                    conducta y la politica de privacidad de NTC. </h6>
+                        </form>
+                  </div>
+            </div>
+
+      </div>
+      <br>
+
+
+      <footer class="footer-area" id="footerSection">
+            <div class="col-lg-12 col-md-12 col-sm-12 social-widget ">
+                  <div class="single-footer-widget footer-redes siguenos">
+                        <h4 style="color: yellow;">Siguenos</h4>
+                        <div id="redsocial">
+                              <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i><img src="img/Facebook.png"
+                                          alt="Facebook" class="Facebook"></a>
+                              <a href="https://www.twitter.com" target="_blank"><i class="fa fa-twitter"></i><img src="img/Twitter.png"
+                                          alt="Facebook" class="twitter"></a>
+                        </div>
+                        <br>
+                        <br>
+                  </div>
+            </div>
+            <div class="col-lg-12 col-md-6 col-sm-6">
+                  <div id="copyrith" class="single-footer-widget"></div>
+                  <p id="copyrith" class="footer-text" style="color:yellow" style="text-align:center">
+                        Copyright &copy;<script>
+                              document.write(new Date().getFullYear());
+                        </script>Todos los derechos reservados | NTC</a>
+                  </p>
+            </div>
+            <br>
+            <br>
+            </div>
+      </footer>
+
+      <!-- New Message Sidebar End 
+-->
+     
+      <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                  'use strict';
+                  window.addEventListener('load', function () {
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        var forms = document.getElementsByClassName('needs-validation');
+                        // Loop over them and prevent submission
+                        var validation = Array.prototype.filter.call(forms, function (form) {
+                              form.addEventListener('submit', function (event) {
+                                    if (form.checkValidity() === false) {
+                                          event.preventDefault();
+                                          event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                              }, false);
+                        });
+                  }, false);
+            })();
+      </script>
+
+       <script src="js/jquery.min.js"></script>
+       <script src="js/funcionalidad.js"></script>
+       <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .signup-header{
+    width: 550px;
+    height: 120px;
+    background-color: rgb(85, 233, 55); 
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    box-align: center;
+    box-sizing: border-box;
+    font-weight: bold;
+    border-radius: 4px;
+}
+#arranque{
+    background-color: rgb(55, 227, 233);
+}
+#desarrollador{
+    background-color: rgb(226, 68, 226);
+}
+#super{
+    background-color: rgb(229, 173, 82);
+}
+
+  .container-fluid{
+    width: 550px;
+    height: 720px;
+    text-align:center;
+    padding: 3rem, 3rem, 3rem, 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:auto;
+    background: rgb(207, 205, 205);
+    box-align: center;
+    color: brown;
+    border-radius: 4px;
+}
+.formulario{
+    width: 300px;
+    height: 550px;
+    text-align:left;
+    padding: 3rem, 3rem, 3rem, 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    box-align: center;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+.registro{
+    width: 300px;
+    height: 550px;
+    text-align: center;
+    box-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-radius: 3px;
+  }
+  .plan{
+    width: 200px;
+    height: 700px;
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: rgb(82, 81, 81) ;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  h1{
+    font-size: 50px;
+    font-weight: bold;
+    width: auto;
+    padding: 20px,0px,0px,0px;
+    color: rgb(3, 3, 3);
+}
+
+  h4{
+    padding:1rem,1rem;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  h6{
+    color: rgb(115, 25, 25);
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 10px;;
+  }
+  label{
+    color: rgb(159, 85, 85);
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  input{
+    font-size: 12px;
+    margin-left: 10px;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }  
+  
+  input, [type="text"], [type="password"], [type="email"], [type="date"], [type="radio"]{
+   font-size:14px; 
+  }
+ 
+select{
+    font-size: 14px;
+    margin-left: 10px;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+h3{
+    font-size: 15px;
+    font-weight: bold;
+    width: auto;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.2;
+    margin: 0 0 10px 0;
+    color: white;
+}
+
+table {
+    display: block;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    color: white;
+    border:"2";
+    border-color: aliceblue;
+    border-spacing:"2";
+}
+
+tr{
+    display: block;
+    padding: 5px,5px,5px,5px;
+    margin:  5px,5px,5px,5px;
+}
+
+td {
+    font-size: 12px;
+    width: 140px;
+    padding: 5px,5px,5px,5px;
+    line-height: 1.2;
+    margin: 5px 5px 10px 5px;
+}
+.filaderecha{
+    text-align: right;
+    margin-right: 15px;
+}
+p{
+    margin-left: 5px;
+    color:black;
+    font-size: 13px;
+}
+#p1{
+    margin-left: 5px;
+    color:black;
+    font-size: 16px;
+}
+#desbloque{
+    background: beige; 
+    color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 5px, 5px, 5px, 5px;
+    
+}
+#necesita{
+    color:black;
+}
+hr{
+    color:white;
+    background: white;
+    margin-bottom: 1PX;
+}
+
+#copyrith{
+    text-align: center;
+}

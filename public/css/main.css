@@ -1,0 +1,304 @@
+.logo-dunamis{
+    width: 150px;
+    height: 60px;
+    right: 20px;
+}
+.logo-dunamisfooter{
+    width: 270px;
+    height: 120px;
+}
+#fotousuario{
+    width: 50px;
+    height: 50px;
+}
+
+#nombreusuario{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    display:flex; 
+    justify-content: center; 
+    align-items: center;
+    color: rgb(255, 255, 255);
+}
+.captura{
+    text-align: center;
+    display:flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 61%;
+}
+.nav-menu, .nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+      }
+
+#nav-menu-container {
+        margin: 0;
+        font-size: 5.7em;
+     }
+
+@media (max-width: 768px) {
+#nav-menu-container {
+        display: none;
+         }
+    }
+@media (max-width: 720px) {
+    #derecha {
+       display:none;
+        }
+    }
+.starter-template {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+.bg-dark {
+        background-color: rgb(210, 214, 222)!important;
+    }
+.btn-primary{
+        margin-left:8px;
+        background-color: #345cac;
+        border: 0px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+    
+.btn-primary:hover{
+        background-color: #05183e;
+    }
+  
+.btn-outline-light{
+      margin-left:8px;
+  }
+  
+.btn-outline-warning{
+      margin-left:8px;
+  }
+  
+.btn-info{
+    margin-top:25px;
+    background-color: #84f041;
+    border: 0px;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+.btn-dark{
+    margin-top:25px;
+    margin-left: 25px;
+  }
+  
+.btn-secondary{
+    margin-left:58px;
+    margin-right: 8px;
+  }
+  
+.navbar{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .starter-template {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+    #texto-pequenio{
+        color: #777;
+        font-size: 11px;
+        width: 316px;
+    }
+    
+      
+  #tabla-iconos td{
+    padding:15px;
+    font-size: 1em;
+}
+
+#formulario-signup .form-control{
+    margin-top:5px;
+}
+    .btn-success{
+        background: linear-gradient(#67ae55, #578843);
+        background-color: #69a74e;
+        box-shadow: inset 0 1px 1px #a4e388;
+        border-color: #3b6e22 #3b6e22 #2c5115;
+        font-weight: bold;
+        width: 168px;
+        text-shadow: 1px 1px #2c5115;
+    }    
+  .boton{
+  margin-left: 10px;
+  margin-right: 10px;
+  }
+    .promo-headline{
+        margin: auto; 
+        margin-top: 125px;
+        color: rgb(255, 255, 255);
+        width: auto;
+      }
+      .promo-tagline{
+        margin: auto; 
+        margin-top: 20px;
+        color: rgb(255, 255, 255);
+        width: auto;
+        font-size: 26px;
+      }
+      .project{
+        margin: auto; 
+        margin-top: 0px;
+        margin-left: 60px; 
+        color: rgb(255, 255, 255);
+        width: auto;
+        font-size: 18px;
+      }   
+body {
+    padding-top: 5rem;
+    background-color:#EDF0F5;
+}
+.bg-dark {
+    background-color: rgb(15, 8, 8)!important;
+}
+
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+section{
+    margin: 4px;
+    background-color:rgb(194, 194, 194);
+    color:rgb(39, 39, 39);
+    border-radius: 5px;
+    padding:4px;
+    text-align: center;
+}
+
+.form-control{
+    font-size: 1em;
+    width: 2000px;
+    height: 40px;
+}
+
+.btn-light{
+    border: 0px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.navbar{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#formulario-signup .form-control{
+    margin:5px;
+}
+
+.imagen{
+    text-align: center;
+    display:flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.formulario{
+    background-color: rgba(180, 172, 172, 0.16);
+    color: #ffffff;
+    width: 380px;
+    height: 300px;
+    border-radius: 3px;
+    padding: 1rem 2rem 1rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center; 
+    align-items: center;
+}
+h1{
+    font-family: "titulos";
+}
+
+hr{
+    font-size: 20px;
+    }
+input[type="text"], input[type="password"], select{
+    width: 100%;
+    font-size: 16px;
+    padding: 1rem, 1rem;
+    border-radius: 3px;
+    border: 0px;
+    color: grey;
+    margin-top:5px;
+    margin-bottom:5px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+.boton{
+    width: 70px;
+    height: 35px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    border-style: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom:auto;
+}
+
+.boton-rojo{
+    background-color: red;
+}
+
+.plumasescogidas{
+    margin: auto; 
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+    width: auto;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  
+div#verplumas{
+    float: right;
+    background-color: no;
+    box-sizing: border-box;
+    color: white;
+    margin-left: 10px;
+    margin-right: 100px;
+    margin-top: 30PX;
+    margin-bottom: 10PX;
+  }
+  button#anterior{
+    margin-left: 500px;
+    margin-right: 0px;
+  }
+#contenido-especial{
+   display:none;/*Oculta*/
+}
+
+@media only screen and (max-width: 720px) {
+    #contenido-especial{
+    display:block; /*Visible*/
+    }
+}
+
+ 
+  #redsocial{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .Facebook{
+  width: 40px;
+  height: 40px;
+  }
+  .twitter{
+    width: 40px;
+    height: 40px;
+    }
