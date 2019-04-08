@@ -11,8 +11,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="css/footer.css" />
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/sesioniniciada.css" rel="stylesheet">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="css/device-mockups.min.css">
     <link href="css/new-age.min.css" rel="stylesheet">
 
@@ -20,96 +20,115 @@
 
 <body style="background-color: rgb(00,24,84)">
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="sesioniniciada.html"><img src="img/LOGO_NTC.png" class="logo-dunamis"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
-                    <a href="#mensajes"><button type="button" id="Mensajes" class="btn btn-outline-warning">Opiniones</button></a>
-                    <a href="#colecciones"><button type="button" id="Colecciones" class="btn btn-outline-light">Mi avance</button></a>
-
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Crear
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" id="" href="/proyectonuevo.html">Tareas</a>
-                            <a class="dropdown-item" id="" href="/abrirproyecto.html">Ruta de Clases</a>
-                            <a class="dropdown-item" id="nuevomensaje" href="/NuevoMensaje.html">Nueva opinion</a>
-                        </div>
-                    </div>
-
-                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                        <a href="planes.html" class="dropdown-item"><button type="button" class="btn btn-danger">Elegir
-                                un
-                                Plan</button></a>
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Usuario
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a href="perfil.html" class="dropdown-item">Perfil</a>
-                                <a class="dropdown-item" href="apoyo/MANUAL-DE-AYUDA.pdf" target="blank">Apoyo</a>
-                                <a href="/cerrar-sesion" class="dropdown-item">Cerrar Sesion</a>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+                    <a class="navbar-brand" href="sesioniniciada.html"><img src="img/LOGO_NTC.png" class="logo-dunamis"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                        <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
+                            <div class="plumasescogidas" styles="text-align:center; position:center; color:yellow">Estudiante
+                                de:
                             </div>
-                        </div>
+                            <div id="logouniversidad">
+                            </div>
+                            <div id="nombreuniversidad" style="color:white"></div>
+        
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a href="planes.html" class="dropdown-item"><button type="button" class="btn btn-danger">Elegir
+                                        un
+                                        Plan</button></a>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Usuario
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a href="perfil.html" class="dropdown-item">Perfil</a>
+                                        <a class="dropdown-item" href="apoyo/MANUAL-DE-AYUDA.pdf" target="blank">Apoyo</a>
+                                        <a href="/cerrar-sesion" class="dropdown-item">Cerrar Sesion</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fotousuario">
+                            </div>
+                            <div>
+                                <div id="nameusuario" style="color:white">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div id="fotousuario">
-                    </div>
-                    <div>
-                        <div id="nameusuario" style="color:white">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </nav>
+                </nav>
     </div>
-    <div id="proyectos" style="height: auto;">
-        <hr>
-    </div>
+
+    <!--DESDE AQUI COMIENZAN A VERSE LOS MENSAJES-->
+    <hr>
 
     <main role="main" class="container">
-        <div class="container-fluid">
-        <hr>
-            <div id="mensajes">
+
+        <div class="container fluid">
+            <div class="py-1 text-center">
+                <h3 class="plumasescogidas" styles="text-align:center; position:center; color:yellow">Bienvenido(a)
+                    <div id="nombreestudiante"></div>
+                </h3>
+                <div id="logouniversidad">
+                </div>
+                <br>
             </div>
-          
-  <!--DESDE AQUI COMIENZAN A VERSE LOS MENSAJES-->
-            <hr>
-            <main role="main" class="container">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" styles=" text-align:center; position:center">
-                            <h1 class="plumasescogidas" styles="text-align:center; position:center">OPINIONES
-                        </div>
-                        </h1>
-                        <br>
-                        <hr>
+            <div style="color:white; text-align:center">
+                <h5>Para que pueda ver las Clases de su carrera por favor seleccione su carrera de estudio.</h5>
+            </div>
+
+            <form id="carrerau" action="/selectcarrera" method="GET" class="needs-validation" novalidate>
+                <div style="color:yellow; text-align:center; position:center">
+                        <label for="carrera">Seleccione su Carrera de Estudio:</label>     
+                        <select id="carrera" name="carrera" class="carreradelau" required>
+                            <option value="0" placeholder="Seleccione una Carrera">Seleccione una Carrera</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Seleccione su carrera de estudio
+                    </div>
+                    <hr class="mb-3">
+                    <div styles="text-align:center; position:center;">
+                        <button class="btn btn-warning btn-lg btn-block" type="submit">click aqui para continuar</button>
+                    </div>
+                    <br>
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 order-md-1">
+                    <div class="section">
+                        <div id="" style="color:yellow; text-align:center">Clases que ya cursó </div>
+                        <div id="Cursadas"></div>
                     </div>
                 </div>
-            </main>
-            <div>
-                <hr>
-            </div>
-          
-            <main role="main" class="container">
-                <div  class="container-fluid">
-                    <div class="row">
-                        <div id="mensajitos">
-                        <div  class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                                <div class="section">  
-                                </div> 
-                        </div>
-                        </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 order-md-1">
+                    <div class="section">
+                        <div id="" style="color:yellow; text-align:center">Clases que esta cursando </div>
+                        <div id="Cursando"></div>
                     </div>
                 </div>
-            </main>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 order-md-1">
+                    <div class="section">
+                        <div id="" style="color:yellow; text-align:center">Clases que debería cursar el siguiente
+                            periodo </div>
+                        <div id="Cursara"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-1 text-center">
+                <h3 class="plumasescogidas" styles="text-align:center; position:center; color:yellow">Opinion de nuestra
+                    comunidad:</h3><br>
+            </div>
+
+            <div class="mensajitos">
+                <div id="mensajitos"> </div>
+            </div>
+
 
             <div id="colecciones">
                 <div>
@@ -121,39 +140,36 @@
                         <br>
                     </div>
                 </div>
+            </div>
+        </div>
     </main>
 
 
     <section class="contact bg-primary" id="contact">
-            <div class="container">
-                <h2>Nosotros
-                    <i class="fas fa-heart"></i>
-                    ¡Nuevos Amigos!</h2>
-                <ul class="list-inline list-social">
-                    <li class="list-inline-item social-twitter">
-                        <a href="http://www.twitter.com">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item social-facebook">
-                        <a href="http://www.facebook.com">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item social-google-plus">
-                        <a href="http://www.googleplus.com">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item social-linkedin">
-                        <a href="http://www.linkedin.com">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </li>
-                </ul>
-                <h2>Contáctanos</h2>
-            </div>
-        </section>
+        <div class="container">
+            <h2>Nosotros
+                <i class="fas fa-heart"></i>
+                ¡Nuevos Amigos!</h2>
+            <ul class="list-inline list-social">
+                <li class="list-inline-item social-twitter">
+                    <a href="http://www.twitter.com">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item social-facebook">
+                    <a href="http://www.facebook.com">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item social-linkedin">
+                    <a href="http://www.linkedin.com">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+            </ul>
+            <h2>Contáctanos</h2>
+        </div>
+    </section>
 
 
     <div>
@@ -179,8 +195,8 @@
                     <div class="footer-columna">
                         <h3>Sobre Nosotros</h3>
                         <p>Somos un equipo de desarrolladores para dar un servicio de calidad diferente, facil de usar y
-                                de rápido
-                                acceso.</p>
+                            de rápido
+                            acceso.</p>
                     </div>
                 </div>
             </div>
