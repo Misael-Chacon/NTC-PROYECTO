@@ -256,9 +256,9 @@ input[type="text"], input[type="password"], select{
 .plumasescogidas{
     margin: auto; 
     margin-top: 20px;
-    color: rgb(255, 255, 255);
+    color:yellow;
     width: auto;
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
   }
 

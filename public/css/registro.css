@@ -4,6 +4,10 @@
     box-sizing: border-box;
   }
 
+#formregistro{
+margin: auto; 
+} 
+
   .container {
     max-width: 960px;
   }
