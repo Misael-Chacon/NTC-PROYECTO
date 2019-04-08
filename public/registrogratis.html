@@ -17,16 +17,19 @@
       <div>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
                   <a class="navbar-brand" href="index.html"><img src="img/LOGO_NTC.png" class="logo-dunamis"></a>
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-                        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                   </button>
 
                   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                         <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
-                                    <a href="index.html#opinion"><button type="button" id="Mensajes" class="btn btn-outline-warning">Opiniones</button></a>
-                                    <a href="index.html#contact"> <button type="button" id="Colecciones" class="btn btn-outline-light">Contactanos</button></a>
-                    
+                              <a href="index.html#opinion"><button type="button" id="Mensajes"
+                                          class="btn btn-outline-warning">Opiniones</button></a>
+                              <a href="index.html#contact"> <button type="button" id="Colecciones"
+                                          class="btn btn-outline-light">Contactanos</button></a>
+
                               <a href="login.html" class="btn btn-primary my-2 my-sm-0" type="submit">Iniciar Sesion</a>
                         </form>
                   </div>
@@ -38,76 +41,84 @@
       <div class="container col-md-6 order-md-1" style="background-color: rgb(00,24,84)">
             <div class="py-5 text-center">
                   <br>
-                  <h2 style="text-align: center; color: yellow">BIENVENIDO A NTC <br><small>Registro Gratis</small></h2>
+                  <h2 style="text-align: center; color: yellow">BIENVENIDO A NTC <br><small>Registrate Gratis</small>
+                  </h2>
             </div>
-            <div class="row">
-                  <div class="col-md-6 order-md-1">
-                        <h2 style="text-align: center; color: yellow">Registro de usuarios</h2>
-                        <form action="/guardarregistro" method="GET" class="needs-validation" novalidate>
+            <form id="formregistro" action="/guardarregistro" method="GET" class="needs-validation" novalidate>
+                  <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 order-md-1">
                               <div class="mb-3">
                                     <label for="nombrecompleto">Nombre Completo</label>
-                                    <input type="text" class="form-control" name="nombrecompleto" placeholder="Ejem. Juan Orlando Hernandez"
-                                          required>
+                                    <input type="text" class="form-control" name="nombrecompleto"
+                                          placeholder="Ejem. Juan Orlando Hernandez" required>
                                     <div class="invalid-feedback">
                                           Se requiere que escriba su nombre completo
                                     </div>
                               </div>
                               <div class="mb-3">
                                     <label for="nombreusuario">Elige un nombre de usuario para NTC:</label>
-                                    <input class="form-control" type="text" name="nombreusuario" placeholder="Ejem. JuanFogon"
-                                          required>
+                                    <input class="form-control" type="text" name="nombreusuario"
+                                          placeholder="Ejem. JuanFogon" required>
                                     <div class="invalid-feedback">
                                           Nombre de usuario requerido
                                     </div>
                               </div>
                               <div class="mb-3">
                                     <label for="correo">Correo Electronico:</label>
-                                    <input class="form-control" type="email" name="correo" name="" placeholder="Ejem. juanhernandez@gmail.com"
-                                          required>
+                                    <input class="form-control" type="email" name="correo" name=""
+                                          placeholder="Ejem. juanhernandez@gmail.com" required>
                                     <div class="invalid-feedback">
                                           correo electronico requerido
                                     </div>
                               </div>
                               <div class="mb-3">
                                     <label for="password">Escribe una contraseña:</label>
-                                    <input class="form-control" type="password" name="password" placeholder="minimo 8 caracteres"
-                                          required>
+                                    <input class="form-control" type="password" name="password"
+                                          placeholder="minimo 8 caracteres" required>
                                     <div class="invalid-feedback">
                                           Contraseña requerida
                                     </div>
                               </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 order-md-1">
                               <div class="mb-3">
                                     <label for="genero">Sexo:</label>
                                     <h6><label>Femenino<input type="radio" name="genero" value="Femenino"></label>
-                                        <label>Masculino<input type="radio" name="genero"value="Masculino"></label><br></h6>
+                                          <label>Masculino<input type="radio" name="genero"
+                                                      value="Masculino"></label><br></h6>
                               </div>
                               <div class="mb-3">
                                     <label for="pais">Seleccione su nacionalidad o Pais:</label>
-                                    <select id="pais" name ="pais" class="form-control">
-                                          <option value="0" placeholder="Seleccione un pais"></option>
+                                    <select id="pais" name="pais" class="form-control" required>
+                                          <option value="0" placeholder="Seleccione un pais">Seleccione un país</option>
                                     </select>
                                     <div class="invalid-feedback">
                                           Seleccione su pais de origen
                                     </div>
                               </div>
                               <div class="mb-3">
-                                          <label for="universidad">Seleccione su Universidad de Estudio:</label>
-                                          <select id="universidad" name ="universidad" class="form-control">
-                                                <option value="0" placeholder="Seleccione una Universidad"></option>
-                                          </select>
-                                          <div class="invalid-feedback">
-                                                Seleccione su Universidad de Estudio
-                                          </div>
+                                    <label for="universidad">Seleccione su Universidad de Estudio:</label>
+                                    <select id="universidad" name="universidad" class="form-control" required>
+                                          <option value="0" placeholder="Seleccione una Universidad">Seleccione una
+                                                Universidad</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                          Seleccione su Universidad de Estudio
+                                    </div>
                               </div>
-
                               <hr class="mb-3">
-                              <button class="btn btn-warning btn-lg btn-block" type="submit">Registrarse</button>
+                              <div>
+                                    <button class="btn btn-warning btn-lg btn-block" type="submit">Registrarse</button>
+                              </div>
                               <br>
-                                          <h6 style="color: yellow;">Al registrarse usted acepta los terminos de servicio, el codigo de
-                                    conducta y la politica de privacidad de NTC. </h6>
-                        </form>
+                              <h6 style="color: yellow;">Al registrarse usted acepta los terminos de servicio, el codigo
+                                    de conducta y la politica de privacidad de NTC. </h6>
+
+                        </div>
                   </div>
-            </div>
+
+            </form>
 
       </div>
       <br>
@@ -118,10 +129,10 @@
                   <div class="single-footer-widget footer-redes siguenos">
                         <h4 style="color: yellow;">Siguenos</h4>
                         <div id="redsocial">
-                              <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i><img src="img/Facebook.png"
-                                          alt="Facebook" class="Facebook"></a>
-                              <a href="https://www.twitter.com" target="_blank"><i class="fa fa-twitter"></i><img src="img/Twitter.png"
-                                          alt="Facebook" class="twitter"></a>
+                              <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i><img
+                                          src="img/Facebook.png" alt="Facebook" class="Facebook"></a>
+                              <a href="https://www.twitter.com" target="_blank"><i class="fa fa-twitter"></i><img
+                                          src="img/Twitter.png" alt="Facebook" class="twitter"></a>
                         </div>
                         <br>
                         <br>
@@ -142,7 +153,7 @@
 
       <!-- New Message Sidebar End 
 -->
-     
+
       <script>
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function () {
@@ -164,9 +175,9 @@
             })();
       </script>
 
-       <script src="js/jquery.min.js"></script>
-       <script src="js/funcionalidad.js"></script>
-       <script src="js/bootstrap.min.js"></script>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/funcionalidad.js"></script>
+      <script src="js/bootstrap.min.js"></script>
 
 </body>
 

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Proyecto de desarrollo Web">
+    <meta name="author" content="Leo Misael Chacon">
+    <link rel="shortcut icon" href="img/LOGO_NTC.png">
+    <title>NTC CLASES</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="css/footer.css" />
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/sesioniniciada.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/device-mockups.min.css">
+    <link href="css/new-age.min.css" rel="stylesheet">
+
+</head>
+
+<body style="background-color: rgb(00,24,84)">
+    <div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="sesioniniciada.html"><img src="img/LOGO_NTC.png" class="logo-dunamis"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
+                    <div class="plumasescogidas" styles="text-align:center; position:center; color:yellow">Estudiante
+                        de:
+                    </div>
+                    <div id="logouniversidad">
+                    </div>
+                    <div id="nombreuniversidad" style="color:white"></div>
+
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="planes.html" class="dropdown-item"><button type="button" class="btn btn-danger">Elegir
+                                un
+                                Plan</button></a>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Usuario
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a href="perfil.html" class="dropdown-item">Perfil</a>
+                                <a class="dropdown-item" href="apoyo/MANUAL-DE-AYUDA.pdf" target="blank">Apoyo</a>
+                                <a href="/cerrar-sesion" class="dropdown-item">Cerrar Sesion</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fotousuario">
+                    </div>
+                    <div>
+                        <div id="nameusuario" style="color:white">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <!--DESDE AQUI COMIENZAN A VERSE LOS MENSAJES-->
+    <hr>
+
+    <main role="main" class="container">
+
+        <div class="container fluid">
+            <div class="py-1 text-center">
+                <h3 class="plumasescogidas" styles="text-align:center; position:center; color:yellow">Selecciona las
+                    clases que estas cursando en este periodo:
+                </h3>
+                <br>
+            </div>
+
+            <form id="formselectclases" action="/selectclases" method="GET" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 order-md-1">
+                        <div class="mb-3">
+                            <input type="checkbox" id="chk-1" name="chk-gustos[]" value="1"><label for="chk-1">Baleadas</label><br>
+                            <input type="checkbox" id="chk-2" name="chk-gustos[]" value="2"><label for="chk-2">Sopa de mondongo</label><br>
+                            <input type="checkbox" id="chk-3" name="chk-gustos[]" value="3"><label for="chk-3">Pupusas</label><br>
+                            <input type="checkbox" id="chk-4" name="chk-gustos[]" value="4"><label for="chk-4">Fresco de maracuya</label><br>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 order-md-1">
+                        <hr class="mb-3">
+                        <div>
+                            <button class="btn btn-warning btn-lg btn-block" type="submit">SIGUIENTE</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+            </form>
+
+
+            <div>
+                <footer style="background-color: rgb(00,24,84)">
+                    <div class="footer-container" style="background-color: rgb(00,24,84)">
+                        <div class="footer-main">
+                            <div class="footer-columna">
+                                <h3>Notas Clases Tareas</h3>
+                                <img src="img/LOGO_NTC.png" class="logo-dunamisfooter">
+                            </div>
+                            <div class="footer-columna">
+                                <h3>Dirección</h3>
+                                <span class="fa fa-map-marker">
+                                    <p>Tegucigalpa Honduras</p>
+                                </span>
+                                <span class="fa fa-phone">
+                                    <p>(+504 9906-2425)</p>
+                                </span>
+                                <span class="fa fa-envelope">
+                                    <p>misaelchacon17@yahoo.es</p>
+                                </span>
+                            </div>
+                            <div class="footer-columna">
+                                <h3>Sobre Nosotros</h3>
+                                <p>Somos un equipo de desarrolladores para dar un servicio de calidad diferente, facil
+                                    de usar y
+                                    de rápido
+                                    acceso.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-copy-redes">
+                        <div class="main-copy-redes">
+                            <div class="footer-copy">
+                                <p class="footer-text">
+                                    Copyright &copy;<script>
+                                        document.write(new Date().getFullYear());
+                                    </script> Todos los derechos reservados | NTC</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/controlador.js"></script>
+        <script src="js/controlmensajes.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
