@@ -11,24 +11,35 @@ var credenciales = {
     host: "localhost",
     port: "3306"
 };
+/*
+var realtime = require("./realtime");
+var http = require("http");
+var server = http.Server(app);
+realtime(server)
+var io = require('socket.io').listen(app);*/
 
 var publicAdmin = express.static("public-admin");
 var publicUsuario = express.static("public-usuario");
 
 var codigoUsuario = null;
+var codigoUniversidad = null;
+var codigoCarrera = null;
 var correoUsuario = null;
 var codigoTipoUsuario = null;
 var CodigoProyecto = null;
+
 //Exponer una carpeta como publica, unicamente para archivos estaticos: .html, imagenes, .css, .js
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(express.static("public"));
 app.use(session({
     secret: "ASDFE$%#%",
     resave: true,
     saveUninitialized: true
 }));
-
+//Midlleware para el logeo de usuarios
 app.use(
     function (req, res, next) {
         if (req.session.correoUsuario) {
@@ -78,6 +89,28 @@ app.get("/universidades", function (req, res) {
         }
     );
 });
+//Para llenar las carreras en el formulario de inicio de sesion
+app.get("/carreras", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `select a.codigo_carrera, a.nombre_carrera 
+    from tbl_carreras a
+    Left join tbl_universidades_x_tbl_carreras b
+    on(a.codigo_carrera=b.codigo_carrera)
+    left join tbl_universidades c
+    on(b.codigo_universidad=c.codigo_universidad)
+    where c.codigo_universidad=?`,
+        [codigoUniversidad],
+        function (error, data, fields) {
+            if (error)
+                res.send(error);
+            else {
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+});
 
 ///Para agregar seguridad a una ruta especifica:
 function verificarAutenticacion(req, res, next) {
@@ -91,7 +124,9 @@ function verificarAutenticacion(req, res, next) {
 app.post("/login", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        "SELECT codigo_usuario, correo, codigo_tipo_usuario FROM tbl_usuarios WHERE contrasenia = ? and correo=?",
+        `SELECT codigo_usuario, correo, codigo_tipo_usuario, codigo_universidad 
+        FROM tbl_usuarios 
+        WHERE contrasenia = ? and correo=?`,
         [req.body.contrasena, req.body.correo],
         function (error, data, fields) {
             if (error) {
@@ -103,9 +138,11 @@ app.post("/login", function (req, res) {
                     req.session.codigoUsuario = data[0].codigo_usuario;
                     req.session.correoUsuario = data[0].correo;
                     req.session.codigoTipoUsuario = data[0].codigo_tipo_usuario;
+                    req.session.codigoUniversidad = data[0].codigo_universidad;
                     codigoUsuario = req.session.codigoUsuario;
                     correoUsuario = req.session.correoUsuario;
                     codigoTipoUsuario = req.session.codigoTipoUsuario;
+                    codigoUniversidad = req.session.codigoUniversidad;
                 }
                 res.send(data);
                 res.end();
@@ -118,7 +155,7 @@ app.get("/usuarios", function (req, res) {
     conexion.query(`select a.nombre_completo, a.correo, a.username, 
     a.genero, a.telefono, a.descripcion, a.direccion, a.foto, a.fecha_nacimiento, 
     b.nombre_plan,c.nombre_pais,d.nombre_tipo_usuario, i.url_facebook, j.url_twitter, 
-    k.url_linkedin, l.url_github 
+    k.url_linkedin, m.nombre_universidad, m.logo_universidad 
     from tbl_usuarios a 
     inner join tbl_planes b 
     on(a.codigo_plan = b.codigo_plan)
@@ -132,8 +169,9 @@ app.get("/usuarios", function (req, res) {
     on(a.codigo_usuario = j.codigo_usuario)
     left join tbl_linkedin k
     on(a.codigo_usuario = k.codigo_usuario)
-    left join tbl_github l
-    on(a.codigo_usuario = l.codigo_usuario) WHERE a.codigo_usuario = ?`,
+    left join tbl_universidades m
+    on(a.codigo_universidad = m.codigo_universidad)
+    WHERE a.codigo_usuario = ?`,
         [codigoUsuario],
         function (error, data, fields) {
             if (error) {
@@ -170,7 +208,7 @@ app.get("/contenido-registringido", verificarAutenticacion, function (req, res) 
 //Ruta para guardar el registro de un Nuevo Usuario en registro gratis
 app.get("/guardarregistro", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
-    conexion.query("INSERT INTO tbl_usuarios (nombre_completo, correo, username, contrasenia, genero, codigo_pais, codigo_universidad, codigo_plan,  codigo_tipo_usuario) VALUES (?,?,?,?,?,?,?,1,2)",
+    conexion.query("INSERT INTO tbl_usuarios (nombre_completo, correo, username, contrasenia, genero, codigo_pais, codigo_universidad, codigo_plan,  codigo_tipo_usuario, foto) VALUES (?,?,?,?,?,?,?,1,2,'img/usuarios/avatar.jpg')",
         [req.query.nombrecompleto,
             req.query.correo,
             req.query.nombreusuario,
@@ -189,14 +227,62 @@ app.get("/guardarregistro", function (req, res) {
             }
         });
 });
+//Ruta para guardar la Carrera del estudiante y seleccionar las clases
+app.get("/selectcarrera", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT codigo_carrera, codigo_universidad 
+        FROM tbl_universidades_x_tbl_carreras 
+        WHERE codigo_usuario = ?`,
+        [codigoUsuario, ],
+        function (error, data, fields) {
+            if (error) {
+                res.send(error);
+                res.end();
+            } else {
+                console.log(res);
+                if (data.length == 1) {
+                    codigoCarrera = data[0].codigo_carrera;
+                    res.redirect('/principal.html');
+                    res.end();
+
+                } else {
+                    codigoCarrera = req.query.carrera;
+                    if (codigoCarrera == 0) {
+                        res.redirect('/sesioniniciadaerror.html');
+                        res.end();
+                    } else {
+                        var conexion = mysql.createConnection(credenciales);
+                        conexion.query(
+                            `INSERT INTO tbl_universidades_x_tbl_carreras 
+                            (codigo_carrera, codigo_universidad, codigo_usuario) 
+                            VALUES (?,?,?)`,
+                            [codigoCarrera,
+                                codigoUniversidad,
+                                codigoUsuario,
+                            ],
+                            function (error, data, fields) {
+                                if (error) {
+                                    res.send(error);
+                                    res.end();
+                                } else {
+                                    res.redirect('/selectclases.html');
+                                    res.end();
+                                }
+                            });
+                    }
+                }
+            }
+        });
+});
 
 //Ruta para guardar la OPINION de un Nuevo Usuario
 app.post("/mensaje", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query("INSERT INTO tbl_mensajes(titulo, descripcion, codigo_usuario) VALUES (?,?,?)",
         [req.body.nombredmensaje,
-         req.body.mensaje,
-         codigoUsuario,
+            req.body.mensaje,
+            codigoUsuario,
         ],
         function (error, data, fields) {
             if (error) {
@@ -462,19 +548,8 @@ app.get("/actualizar", function (req, res) {
                                     res.send(error);
                                     res.end();
                                 } else {
-                                    var query = "UPDATE `tbl_github`SET";
-                                    query += "`url_github`='" + req.query.txtPlus + "'";
-                                    query += "WHERE `tbl_github`.`codigo_usuario` = " + codigoUsuario + "";
-                                    var conexion = mysql.createConnection(credenciales);
-                                    conexion.query(query, function (error, data, fields) {
-                                        if (error) {
-                                            res.send(error);
-                                            res.end();
-                                        } else {
-                                            res.send(data);
-                                            res.end();
-                                        }
-                                    });
+                                    res.send(data);
+                                    res.end();
                                 }
                             });
                         }
@@ -485,9 +560,13 @@ app.get("/actualizar", function (req, res) {
     });
 });
 
- 
+
 //Crear y levantar el servidor web.
 app.set('port', process.env.PORT || 8111);
 app.listen(app.get('port'), () => {
     console.log(`SERVIDOR INICIADO EN EL PUERTO ${app.get('port')}`);
 });
+/*
+server.listen(8111, function(){
+    console.log("SERVIDOR INICIADO EN EL PUERTO 8111");
+});*/
