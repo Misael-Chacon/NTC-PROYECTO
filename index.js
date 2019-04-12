@@ -26,7 +26,7 @@ var codigoUniversidad = null;
 var codigoCarrera = null;
 var correoUsuario = null;
 var codigoTipoUsuario = null;
-var CodigoProyecto = null;
+
 
 //Exponer una carpeta como publica, unicamente para archivos estaticos: .html, imagenes, .css, .js
 app.use(bodyParser.json());
@@ -112,6 +112,27 @@ app.get("/carreras", function (req, res) {
     );
 });
 
+//Para llenar las clases en el formulario de Seleccion de clases que esta cursando
+app.get("/clases", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT a.codigo_clase, a.nombre_clase 
+        from tbl_clases a
+        left join tbl_carreras_x_tbl_clases b
+        on(a.codigo_clase = b.codigo_clase)
+        where b.codigo_carrera = ?`,
+        [codigoCarrera],
+        function (error, data, fields) {
+            if (error)
+                res.send(error);
+            else {
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+});
+
 ///Para agregar seguridad a una ruta especifica:
 function verificarAutenticacion(req, res, next) {
     if (req.session.correoUsuario)
@@ -124,8 +145,10 @@ function verificarAutenticacion(req, res, next) {
 app.post("/login", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `SELECT codigo_usuario, correo, codigo_tipo_usuario, codigo_universidad 
-        FROM tbl_usuarios 
+        `SELECT a.codigo_usuario, a.correo, a.codigo_tipo_usuario, a.codigo_universidad, b.codigo_carrera 
+        FROM tbl_usuarios a
+        left join tbl_universidades_x_tbl_carreras b
+        on(a.codigo_usuario = b.codigo_usuario) 
         WHERE contrasenia = ? and correo=?`,
         [req.body.contrasena, req.body.correo],
         function (error, data, fields) {
@@ -139,10 +162,12 @@ app.post("/login", function (req, res) {
                     req.session.correoUsuario = data[0].correo;
                     req.session.codigoTipoUsuario = data[0].codigo_tipo_usuario;
                     req.session.codigoUniversidad = data[0].codigo_universidad;
+                    req.session.codigoCarrera = data[0].codigo_carrera;
                     codigoUsuario = req.session.codigoUsuario;
                     correoUsuario = req.session.correoUsuario;
                     codigoTipoUsuario = req.session.codigoTipoUsuario;
                     codigoUniversidad = req.session.codigoUniversidad;
+                    codigoCarrera = req.session.codigoCarrera;
                 }
                 res.send(data);
                 res.end();
