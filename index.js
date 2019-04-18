@@ -273,11 +273,11 @@ app.get("/selectclases", function (req, res) {
     res.end();
 });
 
-//Ruta para mostrar las clases que esta cursando en el periodo
+/*Ruta para mostrar las clases que esta cursando en el periodo
 app.get("/clasescursadas", function (req, res) {
     res.send(clases);
     res.end();
-});
+});*/
 
 //Ruta para mostrar las clases que esta cursando en el periodo
 app.get("/clasescursando", function (req, res) {
@@ -327,7 +327,7 @@ app.get("/clasescursara", function (req, res) {
             }
         });
 });
-
+//Esta RUTA MUESTRA LAS CLASES QUE NO TIENEN REQUISITOS Y QUE PUEDE CURSAR EL ESTUDIANTE
 app.get("/clasescursara2", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
@@ -345,13 +345,7 @@ app.get("/clasescursara2", function (req, res) {
                 res.send(error);
                 res.end();
             } else {
-                for (var i = 0; i < data.length; i++) {
-                    for (var j = 0; j < clases.length; j++) {
-                        if (data[i].nombre_clase == clases[j]) {
-                            data.splice(pos, [i]);
-                        }
-                    }
-                }
+              
                 res.send(data);
                 res.end();
             }
