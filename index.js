@@ -230,6 +230,21 @@ app.get("/usuarios", function (req, res) {
     )
 });
 
+//Para mostrar el nombre de la carrera en el formulario principal
+app.get("/mostrarcarrera", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query("select a.codigo_carrera, a.nombre_carrera from tbl_carreras a WHERE codigo_carrera = ?",
+        [codigoCarrera],
+        function (error, data, fields) {
+            if (error)
+                res.send(error);
+            else {
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+});
 
 //Ruta para guardar el registro de un Nuevo Usuario en registro gratis
 app.get("/guardarregistro", function (req, res) {
@@ -338,8 +353,10 @@ app.get("/clasescursara2", function (req, res) {
         on(A.codigo_clase = b.codigo_clase)
         left join tbl_dificultades c
         on(c.codigo_dificultad=b.codigo_dificultad)
-        WHERE A.codigo_requisito IS NULL`,
-        [],
+        left join tbl_universidades_x_tbl_carreras e
+        on(e.codigo_clase=b.codigo_clase) 
+        WHERE A.codigo_requisito IS NULL and e.codigo_universidad=? and codigo_carrera = ?`,
+        [codigoUniversidad, codigoCarrera],
         function (error, data, fields) {
             if (error) {
                 res.send(error);
