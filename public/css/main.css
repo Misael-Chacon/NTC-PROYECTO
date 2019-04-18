@@ -173,6 +173,14 @@ section{
     text-align: center;
 }
 
+.lasclases{
+    margin: 2px;
+    background-color:black;
+    color:rgb(39, 39, 39);
+    border-radius: 5px;
+    padding:4px;
+}
+
 .form-control{
     font-size: 1em;
     width: 2000px;
@@ -258,7 +266,6 @@ input[type="text"], input[type="password"], select{
     margin-top: 20px;
     color:yellow;
     width: auto;
-    font-size: 30px;
     font-weight: bold;
   }
 
