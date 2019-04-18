@@ -1,4 +1,20 @@
 
+//PARA MOSTRAR EL NOMBRE DE LA CARRERA QUE ESTA CURSANDO EN EL FORMULARIO PRINCIPAL
+$(document).ready(function () {
+	$.ajax({
+		url: "/mostrarcarrera",
+		method: "GET",
+		dataType: "json",
+		success: function (res) {
+			//console.log(res);
+			$("#CCarrera").append(`${res[0].nombre_carrera}`);
+		},
+		error: function (error) {
+		console.error(error);
+		}
+	});
+});
+
 $(document).ready(function () {
     $.ajax({
           url: "/clasescursando",
