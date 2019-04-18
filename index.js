@@ -24,6 +24,7 @@ var publicUsuario = express.static("public-usuario");
 var codigoUsuario = null;
 var codigoUniversidad = null;
 var codigoCarrera = null;
+var clases = [];
 var correoUsuario = null;
 var codigoTipoUsuario = null;
 
@@ -48,16 +49,39 @@ app.use(
                 publicAdmin(req, res, next);
             else if (req.session.codigoTipoUsuario == 2)
                 publicUsuario(req, res, next);
-            else if (req.session.codigoTipoUsuario == 3)
-                publicUsuario(req, res, next);
-            else if (req.session.codigoTipoUsuario == 4)
-                publicUsuario(req, res, next);
-            else if (req.session.codigoTipoUsuario == 5)
-                publicUsuario(req, res, next);
         } else
             return next();
     }
 );
+
+app.get("/obtener-session", function (req, res) {
+    res.send("Codigo Usuario: " + req.session.codigoUsuario +
+        ", Correo: " + req.session.correoUsuario +
+        ", Tipo Usuario: " + req.session.codigoTipoUsuario
+    );
+    res.end();
+});
+
+app.get("/cerrar-sesion", function (req, res) {
+    req.session.destroy();
+    clases = null;
+    res.redirect('/index.html');
+    res.end();
+});
+
+app.get("/contenido-registringido", verificarAutenticacion, function (req, res) {
+    res.send("Este es un contenido restringido");
+    res.end();
+});
+
+///Para agregar seguridad a una ruta especifica:
+function verificarAutenticacion(req, res, next) {
+    if (req.session.correoUsuario)
+        return next();
+    else
+        res.send("ERROR, ACCESO NO AUTORIZADO");
+}
+
 //RUTAS
 //Para llenar los Paices en el formulario de registrogratis
 app.get("/paices", function (req, res) {
@@ -93,13 +117,12 @@ app.get("/universidades", function (req, res) {
 app.get("/carreras", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `select a.codigo_carrera, a.nombre_carrera 
-    from tbl_carreras a
-    Left join tbl_universidades_x_tbl_carreras b
-    on(a.codigo_carrera=b.codigo_carrera)
-    left join tbl_universidades c
-    on(b.codigo_universidad=c.codigo_universidad)
-    where c.codigo_universidad=?`,
+        `select m.codigo_carrera, m.nombre_carrera, b.codigo_universidad
+        from tbl_carreras m
+        left join tbl_universidades_x_tbl_carreras b
+        on(m.codigo_carrera=b.codigo_carrera) 
+        where b.codigo_universidad=?
+        group by m.codigo_carrera`,
         [codigoUniversidad],
         function (error, data, fields) {
             if (error)
@@ -116,12 +139,16 @@ app.get("/carreras", function (req, res) {
 app.get("/clases", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `SELECT a.codigo_clase, a.nombre_clase 
+        `select a.codigo_clase, a.nombre_clase, a.codigo_abreviatura, a.unidades_valorativas, 
+        e.codigo_universidad, e.codigo_carrera, d.nombre_dificultad
         from tbl_clases a
-        left join tbl_carreras_x_tbl_clases b
-        on(a.codigo_clase = b.codigo_clase)
-        where b.codigo_carrera = ?`,
-        [codigoCarrera],
+        left join tbl_universidades_x_tbl_carreras e
+        on(e.codigo_clase=a.codigo_clase) 
+        left join tbl_dificultades d
+        on(d.codigo_dificultad=a.codigo_dificultad) 
+        where e.codigo_universidad=? and codigo_carrera = ?
+        group by a.codigo_clase`,
+        [codigoUniversidad, codigoCarrera],
         function (error, data, fields) {
             if (error)
                 res.send(error);
@@ -132,14 +159,6 @@ app.get("/clases", function (req, res) {
         }
     );
 });
-
-///Para agregar seguridad a una ruta especifica:
-function verificarAutenticacion(req, res, next) {
-    if (req.session.correoUsuario)
-        return next();
-    else
-        res.send("ERROR, ACCESO NO AUTORIZADO");
-}
 
 //Ruta para Logearse formulario login y login error
 app.post("/login", function (req, res) {
@@ -211,24 +230,6 @@ app.get("/usuarios", function (req, res) {
     )
 });
 
-app.get("/obtener-session", function (req, res) {
-    res.send("Codigo Usuario: " + req.session.codigoUsuario +
-        ", Correo: " + req.session.correoUsuario +
-        ", Tipo Usuario: " + req.session.codigoTipoUsuario
-    );
-    res.end();
-});
-
-app.get("/cerrar-sesion", function (req, res) {
-    req.session.destroy();
-    res.redirect('/index.html');
-    res.end();
-});
-
-app.get("/contenido-registringido", verificarAutenticacion, function (req, res) {
-    res.send("Este es un contenido restringido");
-    res.end();
-});
 
 //Ruta para guardar el registro de un Nuevo Usuario en registro gratis
 app.get("/guardarregistro", function (req, res) {
@@ -254,49 +255,105 @@ app.get("/guardarregistro", function (req, res) {
 });
 //Ruta para guardar la Carrera del estudiante y seleccionar las clases
 app.get("/selectcarrera", function (req, res) {
+    if (req.query.carrera == 0) {
+        res.redirect('/sesioniniciadaerror.html')
+        res.end()
+    } else {
+        codigoCarrera = req.query.carrera;
+        res.redirect('/selectclases.html');
+        res.end();
+    }
+});
+
+//Ruta para Mostrar la pagina principal de las clases que esta cursando 
+app.get("/selectclases", function (req, res) {
+    clases = req.query.chkclases;
+    console.log(req.query.chkclases);
+    res.redirect('/principal.html');
+    res.end();
+});
+
+//Ruta para mostrar las clases que esta cursando en el periodo
+app.get("/clasescursadas", function (req, res) {
+    res.send(clases);
+    res.end();
+});
+
+//Ruta para mostrar las clases que esta cursando en el periodo
+app.get("/clasescursando", function (req, res) {
+    res.send(clases);
+    res.end();
+});
+//Ruta para mostrar las clases que cursará el siguiente periodo
+app.get("/clasescursara", function (req, res) {
+    cclases1 = new Array();
+    cclases1[7] = "";
+    for (var i = 0; i < clases.length; i++) {
+        cclases1[i] = clases[i];
+    }
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `SELECT codigo_carrera, codigo_universidad 
-        FROM tbl_universidades_x_tbl_carreras 
-        WHERE codigo_usuario = ?`,
-        [codigoUsuario, ],
+        `SELECT requisito.nombre_clase_requisito, intermedia.codigo_clase, clasesprox.nombre_clase, 
+        d.nombre_dificultad as Nivel_de_dificultad
+        FROM tbl_clases as clases
+        INNER JOIN tbl_clase_requisitos as requisito on (clases.nombre_clase = requisito.nombre_clase_requisito)
+        INNER JOIN tbl_clases_x_tbl_clase_requisitos as intermedia on (requisito.codigo_requisito = intermedia.codigo_requisito)
+        INNER JOIN tbl_clases as clasesprox on (intermedia.codigo_clase = clasesprox.codigo_clase)
+        left join tbl_dificultades d
+        on(d.codigo_dificultad=clases.codigo_dificultad) 
+        WHERE requisito.nombre_clase_requisito = ?
+        or requisito.nombre_clase_requisito = ?
+        or requisito.nombre_clase_requisito = ?
+        or requisito.nombre_clase_requisito = ?
+        or requisito.nombre_clase_requisito = ?
+        or requisito.nombre_clase_requisito = ?
+        or requisito.nombre_clase_requisito = ?
+        group by clasesprox.nombre_clase`,
+        [cclases1[0],
+            cclases1[1],
+            cclases1[2],
+            cclases1[3],
+            cclases1[4],
+            cclases1[5],
+            cclases1[6],
+        ],
         function (error, data, fields) {
             if (error) {
                 res.send(error);
                 res.end();
             } else {
-                console.log(res);
-                if (data.length == 1) {
-                    codigoCarrera = data[0].codigo_carrera;
-                    res.redirect('/principal.html');
-                    res.end();
+                res.send(data);
+                res.end();
+            }
+        });
+});
 
-                } else {
-                    codigoCarrera = req.query.carrera;
-                    if (codigoCarrera == 0) {
-                        res.redirect('/sesioniniciadaerror.html');
-                        res.end();
-                    } else {
-                        var conexion = mysql.createConnection(credenciales);
-                        conexion.query(
-                            `INSERT INTO tbl_universidades_x_tbl_carreras 
-                            (codigo_carrera, codigo_universidad, codigo_usuario) 
-                            VALUES (?,?,?)`,
-                            [codigoCarrera,
-                                codigoUniversidad,
-                                codigoUsuario,
-                            ],
-                            function (error, data, fields) {
-                                if (error) {
-                                    res.send(error);
-                                    res.end();
-                                } else {
-                                    res.redirect('/selectclases.html');
-                                    res.end();
-                                }
-                            });
+app.get("/clasescursara2", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `select b.codigo_clase, b.nombre_clase, b.unidades_valorativas, b.codigo_abreviatura,
+        c.nombre_dificultad as Nivel_de_dificultad
+        from tbl_clases b
+        left join tbl_clases_x_tbl_clase_requisitos A 
+        on(A.codigo_clase = b.codigo_clase)
+        left join tbl_dificultades c
+        on(c.codigo_dificultad=b.codigo_dificultad)
+        WHERE A.codigo_requisito IS NULL`,
+        [],
+        function (error, data, fields) {
+            if (error) {
+                res.send(error);
+                res.end();
+            } else {
+                for (var i = 0; i < data.length; i++) {
+                    for (var j = 0; j < clases.length; j++) {
+                        if (data[i].nombre_clase == clases[j]) {
+                            data.splice(pos, [i]);
+                        }
                     }
                 }
+                res.send(data);
+                res.end();
             }
         });
 });
