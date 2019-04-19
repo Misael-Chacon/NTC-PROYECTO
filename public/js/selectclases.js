@@ -1,4 +1,4 @@
-//Se cargo el Doom de Mensajes Completamente
+//Se cargo el Doom de las clases Completamente
 $(document).ready(function () {
 	$.ajax({
 		url: "/clases",
