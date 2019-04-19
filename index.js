@@ -268,6 +268,22 @@ app.get("/guardarregistro", function (req, res) {
             }
         });
 });
+
+app.get("/guardaruniversidad", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query("INSERT INTO tbl_universidades (nombre_universidad, logo_universidad) VALUES (?,'img/usuarios/avatar.jpg')",
+        [req.query.nombreuniversidad,
+        ],
+        function (error, data, fields) {
+            if (error) {
+                res.send(error);
+                res.end();
+            } else {
+                res.redirect('/NuevaUniversidad.html');
+                res.end();
+            }
+        });
+});
 //Ruta para guardar la Carrera del estudiante y seleccionar las clases
 app.get("/selectcarrera", function (req, res) {
     if (req.query.carrera == 0) {
@@ -382,7 +398,7 @@ app.post("/mensaje", function (req, res) {
                 res.send(error);
                 res.end();
             } else {
-                res.redirect('/sesioniniciada.html');
+                res.redirect('/principal.html');
                 res.end();
             }
         });
@@ -390,7 +406,12 @@ app.post("/mensaje", function (req, res) {
 
 app.post("/mensajes", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
-    conexion.query("SELECT a.titulo, a.descripcion, b.username, b.foto from tbl_mensajes a inner join tbl_usuarios b on(a.codigo_usuario = b.codigo_usuario) ORDER BY (a.codigo_mensaje) DESC",
+    conexion.query(
+    `SELECT a.titulo, a.descripcion, b.username, b.foto 
+    from tbl_mensajes a 
+    inner join tbl_usuarios b 
+    on(a.codigo_usuario = b.codigo_usuario) 
+    ORDER BY (a.codigo_mensaje) DESC`,
         [],
         function (error, data, fields) {
             if (error) {
