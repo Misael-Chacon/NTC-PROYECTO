@@ -13,7 +13,7 @@
     <link href="css/main.css" rel="stylesheet">
     <link href="css/sesioniniciada.css" rel="stylesheet">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-   <link href="css/new-age.min.css" rel="stylesheet">
+    <link href="css/new-age.min.css" rel="stylesheet">
 
 </head>
 
@@ -28,7 +28,7 @@
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <form id="formulario-login" class="form-inline my-2 my-lg-0 ml-auto">
-                
+
                     <div style="text-align:center; position:center; color:yellow">Estudiante
                         de:
                     </div>
@@ -37,19 +37,19 @@
                     <div id="nombreuniversidad" style="color:white"></div>
 
                     <a href="#opinion"><button type="button" id="Mensajes"
-                        class="btn btn-outline-warning">Opiniones</button></a>
+                            class="btn btn-outline-warning">Opiniones</button></a>
 
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Consultar
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" id="" href="">Tareas</a>
-                        <a class="dropdown-item" id="" href="/calificaciones.html">Calificaciones</a>
-                        <a class="dropdown-item" id="nuevomensaje" href="/NuevoMensaje.html">Nueva opinion</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Consultar
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="" href="">Tareas</a>
+                            <a class="dropdown-item" id="" href="">Calificaciones</a>
+                            <a class="dropdown-item" id="nuevomensaje" href="/NuevoMensaje.html">Nueva opinion</a>
+                        </div>
                     </div>
-                </div>
 
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                         <a href="planes.html" class="dropdown-item"><button type="button" class="btn btn-danger">
@@ -81,12 +81,11 @@
     <hr>
 
     <main role="main" class="container">
-
         <div class="container fluid">
             <div class="row">
                 <div class="py-1 text-center col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 order-md-1">
-                    <h5 style="text-align:center; position:center; color:yellow">Bienvenido(a): <div
-                            id="nombreestudiante"></div>
+                    <h5 style="text-align:center; position:center; color:yellow">Estudiante: <div id="nombreestudiante">
+                        </div>
                     </h5>
                     <br>
                 </div>
@@ -94,53 +93,66 @@
                     <div id="" style="color:white; text-align:center">Carrera de Estudio: </div>
                     <div id="CCarrera" style="color:white; text-align:center"></div>
                 </div>
-
             </div>
-
+           
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 order-md-1">
-                    <div class="lasclases">
-                        <div id="" style="color:yellow; text-align:center">Clases que está cursando en el período
-                            académico </div>
-                        <div id="Cursando"></div>
+                <div style="color:yellow; text-align: center"
+                    class="col-xs-8 col-sm-10 col-md-8 col-lg-8 col-xl-8 order-md-1">
+                    <div style="color:white; text-align: center">
+                        MIS CALIFICACIONES  
                     </div>
+                    <table class="table table-bordered table-dark" style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Clase</th>
+                                <th scope="col">UV</th>
+                               <th scope="col">Calificacion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calificaciones">
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 order-md-1">
-                    <div class="lasclases">
-                        <div id="" style="color:yellow; text-align:center">Clases que debería cursar el siguiente
-                            periodo académico</div>
-                        <div id="Cursara"></div>
+                <div class="col-xs-9 col-sm-10 col-md-4 col-lg-4 col-xl-4 order-md-1" style="color: yellow;">
+                    <div id=""> 
+                      <a href="/principal.html"><button type="button" class="btn btn-primary">
+                        Regresar</button></a>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 order-md-1">
-                    <div class="lasclases">
-                        <div id="" style="color:yellow; text-align:center">Clases que NO tienen requisitos y que puede
-                            matricular en el siguiente período académico</div>
-                        <div id="norequisito"></div>
-                    </div>
+                    <br>
+                    <form id="formcalificacion" action="/guardarcalificacion" method="GET" class="needs-validation"
+                        novalidate>
+                        <h6 style="text-align: center">INGRESAR CALIFICACION</h6>
+                        <div class="mb-3">
+                                <label for="clase">Seleccione una Clase:</label>
+                                <select id="clase" name="clase" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" required>
+                                    <option value="0" placeholder="Seleccione una clase">Seleccione una clase</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Seleccione una clase para ingresar la calificacion
+                                </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="calificacion">Ingrese la calificacion</label>
+                            <input type="text" class="form-control" name="calificacion"
+                                placeholder="Ejemplo 100" required>
+                            <div class="invalid-feedback">
+                                Se requiere que escriba la calificacion de la clase
+                            </div>
+                        </div>
+                         <hr class="mb-3">
+                        <div>
+                            <button class="btn btn-warning btn-lg btn-block" type="submit">Ingresar</button>
+                        </div>
+                        <br>
+                         </form>
                 </div>
             </div>
-
-            <div id="opinion" class="py-1 text-center">
-                <h3 class="plumasescogidas" styles="text-align:center; position:center; color:yellow">Opinion de nuestra
-                    comunidad:</h3><br>
-            </div>
-
-            <main role="" class="container">
-                <div id="mensajitos" class="row">
-                </div>
-                <div style="text-align:center" class="py-1 text-center">
-                    <br>
-                    <button id="anterior" type="button" class="btn btn-dark">Anterior</button>
-                    <button id="siguiente" type="button" class="btn btn-dark">Siguiente</button>
-                    <br>
-                </div>
-                <br>
-                <br>
-            </main>
         </div>
     </main>
 
+    <div>
         <footer style="background-color: rgb(00,24,84)">
             <div class="footer-container" style="background-color: rgb(00,24,84)">
                 <div class="footer-main">
@@ -186,14 +198,13 @@
                 </div>
             </div>
         </footer>
-
+    </div>
 
 
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/controlador.js"></script>
-    <script src="js/controlmensajes.js"></script>
-    <script src="js/principal.js"></script>
+    <script src="js/calificaciones.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 
