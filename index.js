@@ -140,7 +140,7 @@ app.get("/clases", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
         `select a.codigo_clase, a.nombre_clase, a.codigo_abreviatura, a.unidades_valorativas, 
-        e.codigo_universidad, e.codigo_carrera, d.nombre_dificultad
+        e.codigo_universidad, e.codigo_carrera, e.calificacion, d.nombre_dificultad
         from tbl_clases a
         left join tbl_universidades_x_tbl_carreras e
         on(e.codigo_clase=a.codigo_clase) 
@@ -160,14 +160,44 @@ app.get("/clases", function (req, res) {
     );
 });
 
+//Para llenar las clases con su calificacion en el formulario de calificacion
+app.get("/clasecalificacion", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `select a.codigo_clase, a.nombre_clase, a.codigo_abreviatura, a.unidades_valorativas, 
+        e.codigo_universidad, e.codigo_carrera, e.calificacion, d.nombre_dificultad
+        from tbl_clases a
+        left join tbl_universidades_x_tbl_carreras e
+        on(e.codigo_clase=a.codigo_clase) 
+        left join tbl_dificultades d
+        on(d.codigo_dificultad=a.codigo_dificultad) 
+        where e.codigo_usuario=? 
+        group by a.codigo_clase`,
+        [codigoUsuario],
+        function (error, data, fields) {
+            if (error)
+                res.send(error);
+            else {
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+});
+
 //Ruta para Logearse formulario login y login error
 app.post("/login", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `SELECT a.codigo_usuario, a.correo, a.codigo_tipo_usuario, a.codigo_universidad, b.codigo_carrera 
+        `SELECT a.codigo_usuario, a.correo, a.codigo_tipo_usuario, a.codigo_universidad, c.codigo_carrera 
         FROM tbl_usuarios a
-        left join tbl_universidades_x_tbl_carreras b
-        on(a.codigo_usuario = b.codigo_usuario) 
+        left join (select m.codigo_usuario, n.codigo_carrera 
+        from tbl_carreras n
+        right join tbl_universidades_x_tbl_carreras m
+        on(n.codigo_carrera = m.codigo_carrera)
+        where m.codigo_usuario is not null
+        group by m.codigo_usuario) c
+        on(a.codigo_usuario=c.codigo_usuario)
         WHERE contrasenia = ? and correo=?`,
         [req.body.contrasena, req.body.correo],
         function (error, data, fields) {
@@ -272,8 +302,7 @@ app.get("/guardarregistro", function (req, res) {
 app.get("/guardaruniversidad", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query("INSERT INTO tbl_universidades (nombre_universidad, logo_universidad) VALUES (?,'img/usuarios/avatar.jpg')",
-        [req.query.nombreuniversidad,
-        ],
+        [req.query.nombreuniversidad, ],
         function (error, data, fields) {
             if (error) {
                 res.send(error);
@@ -284,6 +313,67 @@ app.get("/guardaruniversidad", function (req, res) {
             }
         });
 });
+
+//Para guardar la calificacion en la Base de datos y luego mostrarlo en la tabla
+app.get("/guardarcalificacion", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `select codigo_universidad, codigo_carrera, calificacion, codigo_usuario, codigo_clase
+        from tbl_universidades_x_tbl_carreras 
+        where codigo_clase= ? and codigo_carrera = ? and codigo_universidad = ? and codigo_usuario = ?`,
+        [req.query.clase,
+            codigoCarrera,
+            codigoUniversidad,
+            codigoUsuario,
+        ],
+        function (error, data, fields) {
+            if (error) {
+                res.send(error);
+                res.end();
+            } else {
+                console.log(res);
+                if (data.length == 1) {
+                    var query = "UPDATE `tbl_universidades_x_tbl_carreras`SET";
+                    query += "`calificacion`='" + req.query.calificacion + "'";                   
+                    query += "WHERE `codigo_universidad` = " + codigoUniversidad + "";
+                    query += "AND `codigo_carrera` = " + codigoCarrera + "";
+                    query += "AND `codigo_usuario` = " + codigoUsuario + "";
+                    query += "AND `codigo_clase` = " + req.query.clase + "";
+                    var conexion = mysql.createConnection(credenciales);
+                    conexion.query(query, function (error, data, fields) {
+                        if (error) {
+                            res.send(error);
+                            res.end();
+                        } else {
+                            res.redirect('/calificaciones.html');
+                            res.end();
+                        }
+                    });
+                } else {
+                    var conexion = mysql.createConnection(credenciales);
+                    conexion.query("INSERT INTO tbl_universidades_x_tbl_carreras (codigo_clase, calificacion, codigo_usuario, codigo_carrera, codigo_universidad) VALUES (?,?,?,?,?)",
+                        [req.query.clase,
+                            req.query.calificacion,
+                            codigoUsuario,
+                            codigoCarrera,
+                            codigoUniversidad,
+                        ],
+                        function (error, data, fields) {
+                            if (error) {
+                                res.send(error);
+                                res.end();
+                            } else {
+
+                                res.redirect('/calificaciones.html');
+                                res.end();
+                            }
+                        });
+                }
+            }
+        });
+
+});
+
 //Ruta para guardar la Carrera del estudiante y seleccionar las clases
 app.get("/selectcarrera", function (req, res) {
     if (req.query.carrera == 0) {
@@ -371,14 +461,15 @@ app.get("/clasescursara2", function (req, res) {
         on(c.codigo_dificultad=b.codigo_dificultad)
         left join tbl_universidades_x_tbl_carreras e
         on(e.codigo_clase=b.codigo_clase) 
-        WHERE A.codigo_requisito IS NULL and e.codigo_universidad=? and codigo_carrera = ?`,
+        WHERE A.codigo_requisito IS NULL and e.codigo_universidad=? and codigo_carrera = ?
+        group by b.nombre_clase desc`,
         [codigoUniversidad, codigoCarrera],
         function (error, data, fields) {
             if (error) {
                 res.send(error);
                 res.end();
             } else {
-              
+
                 res.send(data);
                 res.end();
             }
@@ -407,7 +498,7 @@ app.post("/mensaje", function (req, res) {
 app.post("/mensajes", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-    `SELECT a.titulo, a.descripcion, b.username, b.foto 
+        `SELECT a.titulo, a.descripcion, b.username, b.foto 
     from tbl_mensajes a 
     inner join tbl_usuarios b 
     on(a.codigo_usuario = b.codigo_usuario) 
