@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
@@ -25,6 +25,12 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `tbl_carreras`
 --
+CREATE TABLE `tbl_likes` (
+  `codigo_like` int(11) NOT NULL,
+  `codigo_mensaje` int(11) NOT NULL,
+  `codigo_usuario` int(11) NOT NULL
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tbl_carreras` (
   `codigo_carrera` int(11) NOT NULL,

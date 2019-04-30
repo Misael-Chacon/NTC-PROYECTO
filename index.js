@@ -5,7 +5,7 @@ var mysql = require("mysql");
 var bodyParser = require("body-parser");
 var app = express();
 var credenciales = {
-    user: "root",
+    user: "root1",
     password: "Misael_0801198109176",
     database: "ntc-proyecto",
     host: "localhost",
@@ -498,11 +498,12 @@ app.post("/mensaje", function (req, res) {
 app.post("/mensajes", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `SELECT a.titulo, a.descripcion, b.username, b.foto 
-    from tbl_mensajes a 
-    inner join tbl_usuarios b 
-    on(a.codigo_usuario = b.codigo_usuario) 
-    ORDER BY (a.codigo_mensaje) DESC`,
+        `SELECT a.titulo, a.descripcion, c.username, c.foto, count( a.codigo_usuario ) AS cant_likes
+        FROM tbl_mensajes  a
+        inner join tbl_usuarios c
+        on (a.codigo_usuario=c.codigo_usuario)
+        INNER JOIN tbl_likes  b ON a.codigo_mensaje = b.codigo_mensaje
+        GROUP BY a.codigo_usuario`,
         [],
         function (error, data, fields) {
             if (error) {
