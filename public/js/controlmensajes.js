@@ -5,6 +5,10 @@ $(document).ready(function () {
 		method: "POST",
 		dataType: "json",
 		success: function (res) {
+			$("#mensajitos").append(`<div id="opinion" class="py-1 text-center">
+                <h3 class="plumasescogidas" styles="text-align:center; position:center; color:yellow"> La más votada</h3><br>
+			</div>
+			<hr>`);
 			for (var i = 0; i < res.length; i++) {
 				console.log(res);
 				$("#mensajitos").append(
@@ -21,7 +25,11 @@ $(document).ready(function () {
 					 <hr>
 					 <div style="color:white; font-weight:bold"><h8>${res[i].cant_likes} Likes | 24 hours Ago</h8></div>
 					 <div>
-		      	</div>
+					 
+					 
+				  </div>
+				  <button id="megusta" onclick=darLike("${res[i].codigo_mensaje}")  type="button" class="btn btn-blue">Me Gusta</button>
+				  <br>
 				`
 				);
 			}
@@ -31,3 +39,65 @@ $(document).ready(function () {
 		}
 	});
 });
+
+$("#todos_mensajes").click(function(){
+	$("#todos_mensajes").hide();
+	$.ajax({
+		url: "/mensajestodos",
+		method: "POST",
+		dataType: "json",
+		success: function (res) {
+			for (var i = 0; i < res.length; i++) {
+				console.log(res);
+				$("#mensajitos2").append(
+				 `<div style="text-align:center" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+					 <div  class="mensajasos">
+				 	  <div style="color:white; font-weight: bold"><h6>${res[i].titulo}</h6></div><br>
+					 <div style="color:white;  text-align:justify" ><h7>${res[i].descripcion}</h7></div><br>
+					 <div>
+						 <img style="width: 40px; heigth: 50px; text-align:center" class="imagenn" src="${res[i].foto}">
+					 </div>
+					 <div>
+					 <div style="color:white; font-weight:bold"><h8>-  ${res[i].username}  </h8></div>
+					 </div>
+					 <hr>
+					 <div style="color:white; font-weight:bold"><h8>${res[i].cant_likes} Likes | 24 hours Ago</h8></div>
+					 <div>
+					 
+				  </div>
+				  <button id="megusta" type="button" class="btn btn-blue">Me Gusta</button>
+				  <br>
+				`
+				);
+			}
+		},
+		error: function (error) {
+			console.error(error);
+		}
+	});
+});
+
+function darLike(codigo_mensaje){
+	alert(codigo_mensaje);
+var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT  count( a.codigo_usuario ) AS cant_likes
+        FROM tbl_mensajes  a
+        inner join tbl_usuarios c
+        on (a.codigo_usuario=c.codigo_usuario)
+        INNER JOIN tbl_likes  b 
+        GROUP BY a.codigo_usuario`,
+        [],
+        function (error, data, fields) {
+            if (error) {
+                res.send(error);
+                res.end();
+            } else {
+                res.send(data);
+                res.end();
+            }
+		});
+		//alert(res.cant_likes);
+
+
+	};

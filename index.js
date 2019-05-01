@@ -495,10 +495,11 @@ app.post("/mensaje", function (req, res) {
         });
 });
 
+
 app.post("/mensajes", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `SELECT a.titulo, a.descripcion, c.username, c.foto, count( a.codigo_usuario ) AS cant_likes
+        `SELECT a.codigo_mensaje, a.titulo, a.descripcion, c.username, c.foto, count( a.codigo_usuario ) AS cant_likes
         FROM tbl_mensajes  a
         inner join tbl_usuarios c
         on (a.codigo_usuario=c.codigo_usuario)
@@ -516,6 +517,26 @@ app.post("/mensajes", function (req, res) {
         });
 });
 
+app.post("/mensajestodos", function (req, res) {
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT a.codigo_mensaje, a.titulo, a.descripcion, c.username, c.foto, count( a.codigo_usuario ) AS cant_likes
+        FROM tbl_mensajes  a
+        inner join tbl_usuarios c
+        on (a.codigo_usuario=c.codigo_usuario)
+        INNER JOIN tbl_likes  b 
+        GROUP BY a.codigo_usuario`,
+        [],
+        function (error, data, fields) {
+            if (error) {
+                res.send(error);
+                res.end();
+            } else {
+                res.send(data);
+                res.end();
+            }
+        });
+});
 //Ruta para confirmar cantidad de proyectos que tienen derecho los usuarios formularios que tienen boton crear
 app.get("/Proyects", function (req, res) {
     var conexion = mysql.createConnection(credenciales);
