@@ -28,7 +28,7 @@ $(document).ready(function () {
 					 
 					 
 				  </div>
-				  <button id="megusta" onclick=darLike("${res[i].codigo_mensaje}")  type="button" class="btn btn-blue">Me Gusta</button>
+				  <button id="megusta" onclick=darLike("${res[i].codigo_mensaje}","${res[i].codigo_usuario}")  type="button" class="btn btn-blue">Me Gusta</button>
 				  <br>
 				`
 				);
@@ -65,7 +65,7 @@ $("#todos_mensajes").click(function(){
 					 <div>
 					 
 				  </div>
-				  <button id="megusta" type="button" class="btn btn-blue">Me Gusta</button>
+				  <button id="megusta" onclick=darLike("${res[i].codigo_mensaje}","${res[i].codigo_usuario}") type="button" class="btn btn-blue">Me Gusta</button>
 				  <br>
 				`
 				);
@@ -77,27 +77,27 @@ $("#todos_mensajes").click(function(){
 	});
 });
 
-function darLike(codigo_mensaje){
-	alert(codigo_mensaje);
-var conexion = mysql.createConnection(credenciales);
-    conexion.query(
-        `SELECT  count( a.codigo_usuario ) AS cant_likes
-        FROM tbl_mensajes  a
-        inner join tbl_usuarios c
-        on (a.codigo_usuario=c.codigo_usuario)
-        INNER JOIN tbl_likes  b 
-        GROUP BY a.codigo_usuario`,
-        [],
-        function (error, data, fields) {
-            if (error) {
-                res.send(error);
-                res.end();
-            } else {
-                res.send(data);
-                res.end();
-            }
-		});
-		//alert(res.cant_likes);
+function darLike(codigo_mensaje,codigo_usuario){
+	
+            parametro="codigo_mensaje="+codigo_mensaje+"&codigo_usuario="+codigo_usuario; 
+			alert(parametro);
+			$.ajax({
+				date: parametro,
+				url: "/sumarunlike",
+				method: "POST",
+				dataType: "json",
+				success: function (res) {
+					
+				alert("si");
 
+		
+				},
+				error: function (error) {
+				console.error(error);
+				
+				}		
+			});
 
-	};
+			
+		};
+		
