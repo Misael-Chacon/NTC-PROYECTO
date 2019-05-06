@@ -6,7 +6,7 @@ var bodyParser = require("body-parser");
 var app = express();
 var credenciales = {
     user: "root",
-    password: "Misael_0801198109176",
+    password: "",
     database: "ntc-proyecto",
     host: "localhost",
     port: "3306"
